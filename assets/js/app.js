@@ -266,9 +266,36 @@ if (contactForm) {
     });
   }
 
+  const formStartedAt = Date.now();
+  const formElapsedField = contactForm.querySelector('input[name="form_elapsed"]');
+  const turnstileSlot = contactForm.querySelector(".turnstile-slot");
+  const turnstileSiteKey = (window.RITO_MEASUREMENT_CONFIG || {}).turnstileSiteKey || "";
+  let turnstileWidgetId = null;
+
+  if (turnstileSiteKey && turnstileSlot) {
+    window.ritoTurnstileReady = () => {
+      turnstileWidgetId = window.turnstile.render(turnstileSlot, { sitekey: turnstileSiteKey, language: "pt-BR" });
+    };
+    const turnstileScript = document.createElement("script");
+    turnstileScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=ritoTurnstileReady&render=explicit";
+    turnstileScript.async = true;
+    turnstileScript.defer = true;
+    document.head.appendChild(turnstileScript);
+  }
+
+  const resetTurnstile = () => {
+    if (turnstileWidgetId !== null && window.turnstile) {
+      window.turnstile.reset(turnstileWidgetId);
+    }
+  };
+
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     clearContactStatus();
+
+    if (formElapsedField) {
+      formElapsedField.value = String(Date.now() - formStartedAt);
+    }
 
     if (!validateContactForm()) {
       const firstInvalidField = contactForm.querySelector(
@@ -341,6 +368,7 @@ if (contactForm) {
           : "Não conseguimos enviar sua solicitação agora. Tente novamente em instantes."
       );
     } finally {
+      resetTurnstile();
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = defaultButtonLabel;

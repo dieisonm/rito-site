@@ -2,4 +2,6 @@
 window.RITO_MEASUREMENT_CONFIG = window.RITO_MEASUREMENT_CONFIG || {
   gaMeasurementId: "G-ZTLGY2QWVR",
   metaPixelId: "",
+  // Preencha com a site key do Cloudflare Turnstile para ligar o captcha dos formulários.
+  turnstileSiteKey: "",
 };

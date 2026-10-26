@@ -88,6 +88,46 @@ function mailboxHeader(string $name, string $email): string
     return mimeHeader($name) . ' <' . $email . '>';
 }
 
+function loadTurnstileSecret(): string
+{
+    $configFile = smtpConfigFilePath();
+
+    if (is_file($configFile)) {
+        $loadedConfig = require $configFile;
+
+        if (is_array($loadedConfig) && !empty($loadedConfig['turnstile_secret'])) {
+            return (string) $loadedConfig['turnstile_secret'];
+        }
+    }
+
+    return envString('RITO_TURNSTILE_SECRET');
+}
+
+function turnstileVerified(string $secret, string $token): bool
+{
+    if ($token === '') {
+        return false;
+    }
+
+    $payload = http_build_query([
+        'secret' => $secret,
+        'response' => $token,
+        'remoteip' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
+    ]);
+    $context = stream_context_create([
+        'http' => [
+            'method' => 'POST',
+            'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+            'content' => $payload,
+            'timeout' => 8,
+        ],
+    ]);
+    $response = @file_get_contents('https://challenges.cloudflare.com/turnstile/v0/siteverify', false, $context);
+    $result = is_string($response) ? json_decode($response, true) : null;
+
+    return is_array($result) && !empty($result['success']);
+}
+
 function loadSmtpConfig(): ?array
 {
     $rawConfig = [];
@@ -405,8 +445,24 @@ $casePermission = cleanLine((string) ($_POST['case_permission'] ?? ''));
 $message = trim((string) ($_POST['message'] ?? ''));
 $honeypot = trim((string) ($_POST['website'] ?? ''));
 
-if ($honeypot !== '') {
+$formElapsed = (string) ($_POST['form_elapsed'] ?? '');
+$turnstileToken = trim((string) ($_POST['cf-turnstile-response'] ?? ''));
+
+// Bots: campo armadilha preenchido, envio sem o tempo de preenchimento medido pelo JS (ou em menos de 3 s),
+// ou empresa só com números. Resposta de sucesso silenciosa, sem e-mail nem registro.
+if (
+    $honeypot !== ''
+    || !ctype_digit($formElapsed)
+    || (int) $formElapsed < 3000
+    || preg_match('/^\d+$/', $business) === 1
+) {
     respond(true, 'Recebemos a sua mensagem e entraremos em contato em breve.');
+}
+
+$turnstileSecret = loadTurnstileSecret();
+
+if ($turnstileSecret !== '' && !turnstileVerified($turnstileSecret, $turnstileToken)) {
+    respond(false, 'Confirme a verificação anti-spam e envie novamente.');
 }
 
 if ($name === '' || $business === '' || $whatsapp === '' || $message === '') {
