@@ -1,9 +1,9 @@
 {
-  "source_sha": "fb8098d2d3690eff987d1f5977e920129f429754",
-  "source_short_sha": "fb8098d",
+  "source_sha": "ebdb75e961f44073d8da08b774070ea1c422851b",
+  "source_short_sha": "ebdb75e",
   "source_branch": "main",
-  "source_committed_at": "2026-10-26T11:10:58-03:00",
+  "source_committed_at": "2026-11-01T15:34:48-03:00",
   "source_dirty": false,
-  "asset_version": "65ed36aaa3dd",
-  "built_at": "2026-10-26T17:24:53Z"
+  "asset_version": "2d9e27bdf5b7",
+  "built_at": "2026-11-01T18:35:19Z"
 }

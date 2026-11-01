@@ -38,8 +38,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="../../logos/rito_monogram_r_01.png?v=65ed36aaa3dd" />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=65ed36aaa3dd" />
+    <link rel="icon" type="image/png" href="../../logos/rito_monogram_r_01.png?v=2d9e27bdf5b7" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=2d9e27bdf5b7" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -171,13 +171,14 @@
         </button>
         <nav class="nav" id="site-nav">
           <a href="/">Início</a>
+          <a href="/pages/ofertas.html">Ofertas e preços</a>
           <a href="/pages/solucoes.html">Soluções</a>
           <a href="/pages/como-funciona.html">Como funciona</a>
           <a href="/pages/para-quem.html">Para quem é</a>
           <a href="/pages/sobre.html">Sobre</a>
           <a href="/pages/contato.html">Contato</a>
         </nav>
-        <a class="button primary compact" href="/pages/contato.html">Solicitar orçamento grátis</a>
+        <a class="button primary compact" href="/pages/ofertas.html">Ver ofertas e preços</a>
       </header>
 
       <main class="inner-page">
@@ -264,6 +265,16 @@
 
               <div class="form-grid two-columns">
                 <div class="field-group">
+                  <label for="contact-solution-type">Qual oferta você procura?</label>
+                  <select id="contact-solution-type" name="solution_type">
+                    <option value="">Ainda não sei</option>
+                    <option value="Site Express">Site Express (a partir de R$ 549)</option>
+                    <option value="Automação Rápida">Automação Rápida (a partir de R$ 490)</option>
+                    <option value="Painel de Controle">Painel de Controle (a partir de R$ 859)</option>
+                    <option value="Sob medida">Projeto sob medida</option>
+                  </select>
+                </div>
+                <div class="field-group">
                   <label for="contact-business-profile">Perfil do negócio</label>
                   <select id="contact-business-profile" name="business_profile">
                     <option value="">Selecione, se quiser</option>
@@ -319,8 +330,8 @@
               </div>
             </form>
             <p class="form-note">
-              Os campos com <span class="field-required">*</span> são obrigatórios. A análise inicial
-              é gratuita e sem compromisso.
+              Os campos com <span class="field-required">*</span> são obrigatórios. Usamos seus dados só para
+              responder ao seu contato, conforme a <a href="/pages/privacidade.html">política de privacidade</a>.
             </p>
             <p class="form-note">
               O retorno inicial pode ser feito por WhatsApp, telefone ou e-mail, conforme o canal que
@@ -356,17 +367,6 @@
               >
                 <img class="channel-glyph" src="../assets/icons/whatsapp.svg" alt="" aria-hidden="true" />
                 <span class="sr-only">WhatsApp</span>
-              </a>
-              <a
-                class="channel-icon is-instagram"
-                href="https://www.instagram.com/ritosistemas/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Abrir Instagram da RITO Sistemas"
-                title="Instagram"
-              >
-                <img class="channel-glyph" src="../assets/icons/instagram.svg" alt="" aria-hidden="true" />
-                <span class="sr-only">Instagram</span>
               </a>
               <span
                 class="channel-icon is-linkedin is-pending"
@@ -427,6 +427,8 @@
         </div>
         <div>
           <strong>Navegação</strong>
+          <a href="/pages/ofertas.html">Ofertas e preços</a>
+          <a href="/pages/case-relatorio-de-vendas.html">Case</a>
           <a href="/">Início</a>
           <a href="/pages/solucoes.html">Soluções</a>
           <a href="/pages/para-quem.html">Para quem é</a>
@@ -457,17 +459,6 @@
               <img class="channel-glyph" src="../assets/icons/whatsapp.svg" alt="" aria-hidden="true" />
               <span class="sr-only">WhatsApp</span>
             </a>
-            <a
-              class="channel-icon is-instagram"
-              href="https://www.instagram.com/ritosistemas/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir Instagram da RITO Sistemas"
-              title="Instagram"
-            >
-              <img class="channel-glyph" src="../assets/icons/instagram.svg" alt="" aria-hidden="true" />
-              <span class="sr-only">Instagram</span>
-            </a>
             <span
               class="channel-icon is-linkedin is-pending"
               role="img"
@@ -478,7 +469,7 @@
               <span class="sr-only">LinkedIn em breve</span>
             </span>
           </div>
-          <p class="footer-note">© <span id="year"></span> RITO Sistemas</p>
+          <p class="footer-note">© <span id="year"></span> RITO Sistemas · <a href="/pages/privacidade.html">Política de privacidade</a></p>
         </div>
       </footer>
 
@@ -499,8 +490,8 @@
         </span>
       </a>
     </div>
-    <script src="../assets/js/measurement-config.js?v=65ed36aaa3dd"></script>
-    <script src="../assets/js/measurement.js?v=65ed36aaa3dd"></script>
-    <script src="../assets/js/app.js?v=65ed36aaa3dd"></script>
+    <script src="../assets/js/measurement-config.js?v=2d9e27bdf5b7"></script>
+    <script src="../assets/js/measurement.js?v=2d9e27bdf5b7"></script>
+    <script src="../assets/js/app.js?v=2d9e27bdf5b7"></script>
   </body>
 </html>

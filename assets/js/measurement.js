@@ -409,8 +409,8 @@
       pushEvent("click_email", trackingPayload);
     } else if (href.includes("instagram.com")) {
       pushEvent("click_instagram", trackingPayload);
-    } else if (href.includes("projeto-piloto.html")) {
-      pushEvent("click_pilot_landing", trackingPayload);
+    } else if (href.includes("ofertas.html")) {
+      pushEvent("click_offers_page", trackingPayload);
     }
   });
 
