@@ -8,3 +8,6 @@ RewriteRule ^(.*)$ https://ritosistemas.com/$1 [R=301,L]
 # Avoid indexing /index.html as a duplicate of the homepage.
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://ritosistemas.com/ [R=301,L]
+
+# Projeto Piloto substituído pelas ofertas de preço fechado (2026-11).
+RewriteRule ^pages/projeto-piloto\.html$ https://ritosistemas.com/pages/ofertas.html [R=301,L]

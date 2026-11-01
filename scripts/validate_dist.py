@@ -22,7 +22,9 @@ REQUIRED_PATHS = [
     "logos/rito_monogram_r_01.png",
     "logos/rito_sistemas_wordmark_01.png",
     "pages/contato.html",
-    "pages/projeto-piloto.html",
+    "pages/ofertas.html",
+    "pages/case-relatorio-de-vendas.html",
+    "pages/privacidade.html",
     "storage/.htaccess",
     "storage/index.html",
 ]
